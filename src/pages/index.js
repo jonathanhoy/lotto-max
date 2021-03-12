@@ -8,45 +8,82 @@ class IndexPage extends React.Component {
       answer: 0,
       lines: 0,
       encores: 0,
+      total: 0,
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.lines !== prevState.lines || this.state.encores !== prevState.encores) {
+      this.calculateTotal(this.state.lines, this.state.encores)
+    }
+    if (this.state.amount !== prevState.amount && !isNaN(this.state.amount)) {
+      this.calculateLines(this.state.amount);
+      this.calculateEncores(this.state.amount);
+    }
+  }
+  
+  calculateTotal = (lines, encores) => {
+    let total;
+    const x = lines * 5;
+    const y = encores;
+    total =+ y + x;
+    this.setState({
+      total
+    })
+  }
+
   calculateLines = (amount) => {
-    const lines = Math.floor((parseInt(amount)/5));
+    let lines = Math.floor((parseInt(amount)/5));
+    if (isNaN(lines)) {
+      lines = 0;
+    }
     this.setState({
       lines
     })
   }
 
   calculateEncores = (amount) => {
-    const encores = amount % 5;
+    let encores = amount % 5;
+    if (isNaN(encores)) {
+      encores = 0;
+    }
     this.setState({
       encores
     })
   }
 
   handleAmount = (e) => {
-    const amount = parseInt(e.target.value);
+    let amount = parseInt(e.target.value);
+    // this.setState({
+    //   amount
+    // }, () => {
+    //   this.calculateLines(this.state.amount);
+    //   this.calculateEncores(this.state.amount);
+    // });
+    if (isNaN(amount)) {
+      amount = 0;
+    }
     this.setState({
       amount
-    }, () => {
-      this.calculateLines(this.state.amount);
-      this.calculateEncores(this.state.amount);
-    });
+    })
   }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
 
   render() {
     return (
       <>
         <h1>Calculator</h1>
         <section>
+          <h2>I know how much money I/my group will spend</h2>
           <form>
             <label htmlFor="amount">Amount</label>
             <input id="amount" type="number" onChange={this.handleAmount} />
           </form>
-        </section>
-        <section>
           <div>
             <p>Lines</p>
             <p>{!isNaN(this.state.lines) ? this.state.lines : 0}</p>
@@ -54,6 +91,19 @@ class IndexPage extends React.Component {
           <div>
             <p>Encores</p>
             <p>{!isNaN(this.state.encores) ? this.state.encores : 0}</p>
+          </div>
+        </section>
+        <section>
+          <h2>I don't know how much money I/my group will spend</h2>
+          <form>
+            <label htmlFor="lines">Lines</label>
+            <input id="lines" type="number" onChange={this.handleChange} />
+            <label htmlFor="encores">Encores</label>
+            <input id="encores" type="number" onChange={this.handleChange} />
+          </form>
+          <div>
+            <p>Total</p>
+            <p>{!isNaN(this.state.total) ? this.state.total : 0}</p>
           </div>
         </section>
       </>
