@@ -5,7 +5,6 @@ const GlobalStyle = createGlobalStyle`
     * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
     body {
         margin: 0;
-        background: lightgrey;
     }
 `;
 

@@ -1,40 +1,50 @@
 import * as React from "react"
 import GlobalStyle from "../styles/Global";
+import "fontsource-open-sans";
+import "@fontsource/oswald"
 import { Header, PageHeading } from "../styles/Header";
 import { Container } from "../styles/Container";
 import { Form } from "../styles/Form";
+import { Instructions, Copy, GroupPlay } from "../styles/Instructions";
 
 class IndexPage extends React.Component {
   constructor() {
     super();
     this.state = {
       amount: "",
-      lines: "",
+      plays: "",
       encores: "",
+      players: 1,
+      costPerPerson: ""
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.lines !== prevState.lines || this.state.encores !== prevState.encores) {
-      this.calculateAmount(this.state.lines, this.state.encores)
+    if (this.state.plays !== prevState.plays || this.state.encores !== prevState.encores) {
+      this.calculateAmount(this.state.plays, this.state.encores)
     };
     if (this.state.amount !== prevState.amount) {
-      this.calculateLines(this.state.amount);
+      this.calculatePlays(this.state.amount);
       this.calculateEncores(this.state.amount);
+      this.calculateCostPerPerson(this.state.amount, this.state.players);
     };
+    if (this.state.players !== prevState.players) {
+      this.calculateCostPerPerson(this.state.amount, this.state.players);
+    }
   }
 
-  reset = () => {
-    this.setState({
-      amount: "",
-      lines: "",
-      encores: "",
-    })
+  calculateCostPerPerson = (amount, players) => {
+    if (amount !== "" && amount > 0) {
+      const costPerPerson = (amount / players).toFixed(2);
+      this.setState({
+        costPerPerson
+      })
+    }
   }
-  
-  calculateAmount = (lines, encores) => {
+
+  calculateAmount = (plays, encores) => {
     let amount;
-    const x = lines * 5;
+    const x = plays * 5;
     const y = encores;
     amount =+ y + x;
     if (isNaN(amount) || amount === 0) {
@@ -45,13 +55,13 @@ class IndexPage extends React.Component {
     });
   }
 
-  calculateLines = (amount) => {
-    let lines = Math.floor((parseInt(amount)/5));
-    if (isNaN(lines) || amount === 0 || lines === 0) {
-      lines = "";
+  calculatePlays = (amount) => {
+    let plays = Math.floor((parseInt(amount)/5));
+    if (isNaN(plays) || amount === 0 || plays === 0) {
+      plays = "";
     };
     this.setState({
-      lines
+      plays
     });
   }
 
@@ -60,7 +70,6 @@ class IndexPage extends React.Component {
     if (isNaN(encores) || amount === 0 || encores === 0) {
       encores = "";
     };
-    console.log('encore changing', encores);
     this.setState({
       encores
     });
@@ -80,9 +89,29 @@ class IndexPage extends React.Component {
     e.preventDefault();
     this.setState({
       amount: "",
-      lines: "",
+      plays: "",
       encores: "",
+      costPerPerson: "",
     });
+  }
+
+  handleIncrease = () => {
+    let players = this.state.players;
+    players += 1;
+    this.setState({
+      players
+    })
+  }
+
+  handleDecrease = () => {
+    let players = this.state.players;
+    if (players - 1 === 0) {
+      return;
+    }
+    players -= 1;
+    this.setState({
+      players
+    })
   }
 
   render() {
@@ -90,40 +119,63 @@ class IndexPage extends React.Component {
       <>
         <GlobalStyle />
         <Header>
-          <PageHeading>Calculator</PageHeading>
+          <PageHeading>Lotto Max</PageHeading>
         </Header>
         <main>
           <Container>
             <Form >
-              <div>
-                <label htmlFor="amount">Amount</label>
-                <input 
-                  id="amount"
-                  type="number"
-                  onChange={this.handleChange}
-                  value={this.state.amount}
-                />
+              <div className="inputs">
+                <div>
+                  <label htmlFor="amount">Amount ($)</label>
+                  <input 
+                    id="amount"
+                    type="number"
+                    onChange={this.handleChange}
+                    value={this.state.amount}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="plays">Plays</label>
+                  <input 
+                    id="plays"
+                    type="number"
+                    onChange={this.handleChange}
+                    value={this.state.plays}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="encores">Encores</label>
+                  <input 
+                    id="encores"
+                    type="number"
+                    onChange={this.handleChange}
+                    value={this.state.encores}
+                  />
+                </div>
+                <div className="button">
+                  <button onClick={this.handleClick}>Clear</button>
+                </div>
               </div>
-              <div>
-                <label htmlFor="lines">Lines</label>
-                <input 
-                  id="lines"
-                  type="number"
-                  onChange={this.handleChange}
-                  value={this.state.lines}
-                />
-              </div>
-              <div>
-                <label htmlFor="encores">Encores</label>
-                <input 
-                  id="encores"
-                  type="number"
-                  onChange={this.handleChange}
-                  value={this.state.encores}
-                />
-              </div>
-              <button onClick={this.handleClick}>Clear</button>
             </Form>
+            <Instructions>
+                <GroupPlay>
+                  <div className="button-group">
+                    <div className="copy-container">
+                      <p>Number of people in group: <span>{this.state.players}</span></p>
+                      <p>Cost per person: ${this.state.costPerPerson}</p>
+                    </div>
+                    <div className="button-container">
+                      <button onClick={this.handleIncrease}>⬆️</button>
+                      <button onClick={this.handleDecrease}>⬇️</button>
+                    </div>
+                  </div>
+                </GroupPlay>
+                <Copy>
+                  <p>Entering a dollar amount will calculate the most plays and encores you can buy (emphasizing plays over encores).</p>
+                  <p>Entering the number of plays and encores you plan to get will calculate the cost.</p>
+                  <p>Plays are $5 each, encores are $1 each.</p>
+                </Copy>
+            </Instructions>
           </Container>
         </main>
       </>
