@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Header = styled.header`
     text-align: center;
     margin: 25px 0;
-    @media (max-width: 500px) {
+    @media (max-width: 768px) {
         margin: 15px 0;
     }
 `;

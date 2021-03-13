@@ -12,9 +12,13 @@ const Card = styled.div`
     font-family: 'Open Sans';
     margin: 0 auto;
     box-shadow: 0 0 33px rgba(0, 0, 0, 0.3);
-    @media (max-width: 500px) {
+    @media (max-width: 768px) {
         flex-direction: column;
         padding: 25px;
+        width: 75%;
+    }
+    @media (max-width: 500px) {
+        width: 95%;
     }
 `;
 

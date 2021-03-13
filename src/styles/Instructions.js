@@ -7,7 +7,7 @@ const Instructions = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    @media (max-width: 500px) {
+    @media (max-width: 768px) {
         margin-bottom: 0;
         margin-left: 0;
         margin-top: 10px;

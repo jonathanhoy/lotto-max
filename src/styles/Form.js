@@ -54,7 +54,7 @@ const Form = styled.form`
             font-family: 'Open Sans';
         }
     }
-    @media (max-width: 500px) {
+    @media (max-width: 768px) {
         margin-right: 0;
         .inputs {
             flex-direction: row;
