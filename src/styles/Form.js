@@ -9,6 +9,7 @@ const Form = styled.form`
         div {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 10px;
             label {
                 font-size: 1.5rem;
