@@ -9,7 +9,7 @@ const GroupPlay = styled.div`
         align-items: center;
         justify-content: space-between;
         padding: 15px;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.4);
         border-radius: 5px;
         width: 100%;
         .copy-container {
@@ -22,6 +22,8 @@ const GroupPlay = styled.div`
                 background: none;
                 border: none;
                 font-size: 1.5rem;
+                padding-right: 0;
+                padding: 3px 0;
             }
         }
     }

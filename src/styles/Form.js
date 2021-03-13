@@ -23,6 +23,7 @@ const Form = styled.form`
                 border-radius: 5px;
                 border: none;
                 box-shadow: none;
+                background-color: rgba(255,255,255, 0.8);
                 /* Chrome, Safari, Edge, Opera */
                 &::-webkit-outer-spin-button,
                 &::-webkit-inner-spin-button {
@@ -95,6 +96,7 @@ const Form = styled.form`
             margin: 10px 0;
             button {
                 width: 100%;
+                font-size: 1.25rem;
             }
         }
     }

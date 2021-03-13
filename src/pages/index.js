@@ -162,7 +162,7 @@ class IndexPage extends React.Component {
                 <GroupPlay>
                   <div className="button-group">
                     <div className="copy-container">
-                      <p>Number of people in group: <span>{this.state.players}</span></p>
+                      <p>People in group: <span>{this.state.players}</span></p>
                       <p>Cost per person: ${this.state.costPerPerson}</p>
                     </div>
                     <div className="button-container">
@@ -173,7 +173,7 @@ class IndexPage extends React.Component {
                 </GroupPlay>
                 <Copy>
                   <p>Entering a dollar amount will calculate the most plays and encores you can buy (emphasizing plays over encores).</p>
-                  <p>Entering the number of plays and encores you plan to get will calculate the cost.</p>
+                  <p>Entering the number of plays and encores you plan to buy will calculate the cost.</p>
                   <p>Plays are $5 each, encores are $1 each.</p>
                 </Copy>
             </Instructions>
