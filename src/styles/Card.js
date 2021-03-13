@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+const Card = styled.div`
     display: flex;
     justify-content: center;
-    max-width: 1000px;
+    max-width: 800px;
     width: 95%;
     padding: 50px 75px;
     border-radius: 5px;
@@ -19,4 +19,4 @@ const Container = styled.div`
     }
 `;
 
-export { Container };
+export { Card };

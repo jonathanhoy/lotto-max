@@ -3,9 +3,10 @@ import GlobalStyle from "../styles/Global";
 import "fontsource-open-sans";
 import "@fontsource/oswald"
 import { Header, PageHeading } from "../styles/Header";
-import { Container } from "../styles/Container";
+import { Card } from "../styles/Card";
 import { Form } from "../styles/Form";
-import { Instructions, Copy, GroupPlay } from "../styles/Instructions";
+import { Instructions, Copy } from "../styles/Instructions";
+import { GroupPlay } from "../styles/GroupPlay";
 
 class IndexPage extends React.Component {
   constructor() {
@@ -122,7 +123,7 @@ class IndexPage extends React.Component {
           <PageHeading>Lotto Max</PageHeading>
         </Header>
         <main>
-          <Container>
+          <Card>
             <Form >
               <div className="inputs">
                 <div>
@@ -176,7 +177,7 @@ class IndexPage extends React.Component {
                   <p>Plays are $5 each, encores are $1 each.</p>
                 </Copy>
             </Instructions>
-          </Container>
+          </Card>
         </main>
       </>
     )
