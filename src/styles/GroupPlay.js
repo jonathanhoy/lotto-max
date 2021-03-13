@@ -29,6 +29,14 @@ const GroupPlay = styled.div`
     }
     @media (max-width: 500px) {
         margin-bottom: 20px;
+        .copy-container {
+            p:nth-child(1) {
+                margin-top: 0;
+            }
+            p:nth-child(2) {
+                margin-bottom: 0;
+            }
+        }
     }
 `;
 
