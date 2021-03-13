@@ -166,8 +166,8 @@ class IndexPage extends React.Component {
                       <p>Cost per person: ${this.state.costPerPerson}</p>
                     </div>
                     <div className="button-container">
-                      <button onClick={this.handleIncrease}>⬆️</button>
-                      <button onClick={this.handleDecrease}>⬇️</button>
+                      <button onClick={this.handleIncrease}><span role="img" aria-label="Up arrow emoji">⬆️</span></button>
+                      <button onClick={this.handleDecrease}><span role="img" aria-label="Down arrow emoji">⬇️</span></button>
                     </div>
                   </div>
                 </GroupPlay>
