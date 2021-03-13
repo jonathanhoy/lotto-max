@@ -15,7 +15,6 @@ const Card = styled.div`
     @media (max-width: 500px) {
         flex-direction: column;
         padding: 25px;
-        border-radius: 5px 5px 0 0;
     }
 `;
 
