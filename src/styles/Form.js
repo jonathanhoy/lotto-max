@@ -50,6 +50,7 @@ const Form = styled.form`
             padding: 1rem 1.5rem;
             border-radius: 50px;
             color: white;
+            font-family: 'Open Sans';
         }
     }
     @media (max-width: 500px) {
