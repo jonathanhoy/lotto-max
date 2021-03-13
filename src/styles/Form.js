@@ -16,6 +16,7 @@ const Form = styled.form`
                 margin-bottom: 5px;
             }
             input {
+                font-family: 'Open Sans';
                 max-width: 125px;
                 padding: 5px 0;
                 font-size: 1.5rem;
